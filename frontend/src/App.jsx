@@ -2,6 +2,10 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
+import axios from "axios";
+
+
+axios.defaults.baseURL = `https://dalle-duplicatus-backend-94476a008587.herokuapp.com/`;
 
 const App = () => {
   return (

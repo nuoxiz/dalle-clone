@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader, FormField, Card } from "../components";
 import axios, { all } from "axios";
+import { getPosts } from "../services/PostService";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0)
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -20,7 +21,7 @@ const Home = () => {
       setLoading(true);
 
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/post/");
+        const response = await getPosts();
         console.log("Got response");
         console.log(response);
         if (response) {
@@ -37,7 +38,7 @@ const Home = () => {
   }, []);
 
   const handleSeachChange = (e) => {
-    clearTimeout()
+    clearTimeout();
     setSearchText(e.target.value);
 
     setSearchTimeout(
@@ -63,7 +64,14 @@ const Home = () => {
         </p>
       </div>
       <div className="mt-16 ">
-        <FormField labelName="Search posts" type="text"  name="text" placeholder="Search posts" value={searchText} handleChange={handleSeachChange} />
+        <FormField
+          labelName="Search posts"
+          type="text"
+          name="text"
+          placeholder="Search posts"
+          value={searchText}
+          handleChange={handleSeachChange}
+        />
       </div>
       <div className="mt-10 ">
         {loading ? (
@@ -80,7 +88,10 @@ const Home = () => {
             )}
             <div className="grid lg:grid-cols-4 sm:grid-cols3 xs:grid-cols-2 grid-cols-1 gap-3">
               {searchText ? (
-                <RenderCards data={searchedResults} title="No search results found" />
+                <RenderCards
+                  data={searchedResults}
+                  title="No search results found"
+                />
               ) : (
                 <RenderCards data={allPosts} title="No posts found" />
               )}
