@@ -8,9 +8,7 @@ import Post from "../mongodb/models/post.js";
 dotenv.config();
 
 const router = express.Router();
-console.log(
-  "process.env.CLOUDINARY_CLOUD_NAME >>> " + process.env.CLOUDINARY_CLOUD_NAME
-);
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
