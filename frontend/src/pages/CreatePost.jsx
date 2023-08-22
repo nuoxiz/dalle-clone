@@ -23,7 +23,7 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/post/", form);
+      const response = await axios.post("https://dalle-duplicatus-backend.onrender.com/api/v1/post/", form);
       console.log(response)
       // await response.data.json();
 
@@ -46,7 +46,7 @@ const CreatePost = () => {
       try {
         setGeneratingImg(true);
         const response = await axios.post(
-          "http://localhost:8080/api/v1/dalle",
+          "https://dalle-duplicatus-backend.onrender.com/api/v1/dalle",
           { prompt: form.prompt }
         );
         const data = response.data;
