@@ -4,6 +4,9 @@ import cors from "cors";
 import connectDB from "./mongodb/connect.js";
 import postRoutes from "./routes/postRoutes.js";
 import dalleRoutes from "./routes/dalleRoutes.js";
+import usersRouter from "./routes/users.js";
+import router from "./routes/auth.js";
+
 dotenv.config();
 /* Initialize the server */
 const app = express();
@@ -13,7 +16,9 @@ app.use(express.json({ limit: "50mb" }));
 
 app.use("/api/v1/post", postRoutes);
 app.use("/api/v1/dalle", dalleRoutes);
-
+console, log("Use user and auth routes");
+app.use("/users", usersRouter);
+app.use("/auth", router);
 app.get("/", async (req, res) => {
   res.send("Hello from DALL-E!");
 });
