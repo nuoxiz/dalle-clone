@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { preview } from "../assets";
 import { FormField, Loader } from "../components";
 import { getRandomPrompt } from "../utils";
-import axios from "axios";
+import { createNewPost } from "../services/PostService";
+import { generateImageFromPrompt } from "../services/ImageService";
 const CreatePost = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -23,10 +24,7 @@ const CreatePost = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/post/", form);
-      console.log(response)
-      // await response.data.json();
-
+      const response = await createNewPost(form);
       navigate("/");
     } catch (error) {
       alert(error);
@@ -45,10 +43,7 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await axios.post(
-          "http://localhost:8080/api/v1/dalle",
-          { prompt: form.prompt }
-        );
+        const response = await generateImageFromPrompt(form.prompt);
         const data = response.data;
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (error) {
