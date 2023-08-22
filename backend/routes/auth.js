@@ -1,5 +1,4 @@
-import express from "express";
-
+const express = require("express");
 
 import authController from "../controller/authController";
 

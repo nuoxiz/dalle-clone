@@ -1,11 +1,14 @@
-import express from "express";
-import * as dotenv from "dotenv";
-import cors from "cors";
-import connectDB from "./mongodb/connect.js";
-import postRoutes from "./routes/postRoutes.js";
-import dalleRoutes from "./routes/dalleRoutes.js";
-import usersRouter from "./routes/users.js";
-import router from "./routes/auth.js";
+const express = require("express");
+
+const dotenv = require("dotenv").config();
+const cors = require("cors")
+const connectDB = require("./mongodb/connect.js")
+const postRoutes = requrie("./routes/postRoutes.js")
+
+// import postRoutes from ;
+// import dalleRoutes from "./routes/dalleRoutes.js";
+// import usersRouter from "./routes/users.js";
+// import router from "./routes/auth.js";
 
 dotenv.config();
 /* Initialize the server */
