@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vite build",
     "postinstall": "npm run build",
-    "serve-heroku": "vite --host 0.0.0.0",
+    "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview",
     "dev": "vite",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
